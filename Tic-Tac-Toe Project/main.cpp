@@ -9,7 +9,7 @@ void runGame();
 void initialiseGameBoard(string gameBoard[ROWS][COLS]);
 void printCurrentBoard(string gameBoard[ROWS][COLS]);
 void getUserInput(bool xTurn, string gameBoard[ROWS][COLS]);
-//bool isBoardFull(string gameBoard[ROWS][COLS]);
+bool isBoardFull(string gameBoard[ROWS][COLS]);
 bool cellAlreadyOccupied(int a, int b, string gameBoard[ROWS][COLS]);
 string checkWinner(string gameBoard[ROWS][COLS]);
 
@@ -24,25 +24,50 @@ void runGame()
 {
 	string winner = "";
 	string gameBoard[ROWS][COLS];
+	string replay;
 	initialiseGameBoard(gameBoard);
 	printCurrentBoard(gameBoard);
 	bool xTurn = true;
 	while (winner == "")
 	{	
 		if (xTurn)
-		{
+		{	
+			cout << endl << endl;
 			cout <<"X, it's your turn." <<endl;
 		}
 		else
-		{
+		{	
+			cout << endl << endl;
 			cout <<"O, it's your turn."<< endl;
 		}
 		getUserInput(xTurn, gameBoard);
 		xTurn = !xTurn;
 		printCurrentBoard(gameBoard);
 		winner = checkWinner(gameBoard);
+		bool boardFull = isBoardFull(gameBoard);
+		if (boardFull && winner == "")
+		{	
+			cout << "A tied game!" << endl << endl;
+		}
+		
 	}
-	cout << "Congratulations " << winner << "! You are the winner.";
+	cout << endl << endl;
+	if (winner != "")
+	{
+		cout << "Congratulations " << winner << "! You are the winner.";
+	}
+	
+	cout << endl << endl;
+	cout << "Do you want to play again? y/n" << endl;
+	cin >> replay;
+	if (replay == "y")
+	{
+		runGame();
+	}
+	if (replay == "n")
+	{
+		exit(0);
+	}
 }
 
 void initialiseGameBoard(string gameBoard[ROWS][COLS])
@@ -144,6 +169,25 @@ string checkWinner(string gameBoard[ROWS][COLS])
 };
 
 
-//bool IsBoardFull(string gameBoard[ROWS][COLS])
-//{}
-//
+bool isBoardFull(string gameBoard[ROWS][COLS])
+{	
+	int boardCounter = 0;
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < ROWS; j++)
+		{
+			if (gameBoard[i][j] != " ")
+			{
+				boardCounter++;
+			}
+		}
+	}
+	if (boardCounter == 9)
+	{
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
