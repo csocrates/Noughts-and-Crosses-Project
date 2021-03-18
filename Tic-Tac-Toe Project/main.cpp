@@ -82,7 +82,8 @@ void initialiseGameBoard(string gameBoard[ROWS][COLS])
 }
 
 void printCurrentBoard(string gameBoard[ROWS][COLS])
-{
+{	
+	cout << endl;
 	for (int row = 0; row < ROWS; row++)
 	{
 		for (int col = 0; col < COLS; col++)
