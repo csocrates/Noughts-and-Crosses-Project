@@ -1,4 +1,4 @@
-# Tic-Tac-Toe-Project
+# Noughts-and-Crosses-Project
 
 This is a project that demonstrates my understanding of some of the fundamentals of C++.
 
